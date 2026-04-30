@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 3.1)
 
 project(qss)
 
+if(NOT TARGET Qt6::Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+endif()
 
 file(GLOB SRCS "src/*.cpp" "include/*.h")
-add_library(${PROJECT_NAME} SHARED ${SRCS})
+add_library(${PROJECT_NAME} STATIC ${SRCS})
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(${PROJECT_NAME} Qt::Core)
 
